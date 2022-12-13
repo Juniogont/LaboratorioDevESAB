@@ -1,0 +1,152 @@
+﻿@model SGE.Models.Sistema
+
+@{
+    ViewData["Title"] = "Editar";
+}
+    <h2 class="text-danger">Editar Sistema (@ViewBag.Nome)</h2>
+
+<hr />
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="@ViewBag.classeDadosTab">
+        <a href="#dadosTab" role="tab" data-toggle="tab">Dados do Sistema</a>
+    </li>
+    <li class="@ViewBag.classeDetalhesTab">
+        <a href="#detalhesTab" role="tab" data-toggle="tab">Cases do Sistema</a>
+    </li>
+</ul>
+<div class="row">
+    <div class="tab-content">
+        <div id="dadosTab" class="tab-pane fade in @ViewBag.classeDadosTab">
+            <form asp-action="Edit">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descricao" class="control-label"></label>
+                        <input asp-for="Descricao" class="form-control" />
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FornecedorId" class="control-label"></label>
+                        <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.FornecedorId"></select>
+                        <span asp-validation-for="FornecedorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InstrumentoId" class="control-label"></label>
+                        <select asp-for="InstrumentoId" class="form-control" asp-items="ViewBag.InstrumentoId"></select>
+                        <span asp-validation-for="InstrumentoId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label asp-for="Codigo" class="control-label"></label>
+                        <input asp-for="Codigo" class="form-control" />
+                        <span asp-validation-for="Codigo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumeroSerie" class="control-label"></label>
+                        <input asp-for="NumeroSerie" class="form-control" />
+                        <span asp-validation-for="NumeroSerie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ValorSistema" class="control-label"></label>
+                        <input asp-for="ValorSistema" class="form-control" />
+                        <span asp-validation-for="ValorSistema" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ValorLocacao" class="control-label"></label>
+                        <input asp-for="ValorLocacao" class="form-control" />
+                        <span asp-validation-for="ValorLocacao" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label asp-for="QuantidadeEstoque" class="control-label"></label>
+                        <input asp-for="QuantidadeEstoque" class="form-control" />
+                        <span asp-validation-for="QuantidadeEstoque" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataAquisição" class="control-label"></label>
+                        <input asp-for="DataAquisição" class="form-control" />
+                        <span asp-validation-for="DataAquisição" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataBaixa" class="control-label"></label>
+                        <input asp-for="DataBaixa" class="form-control" />
+                        <span asp-validation-for="DataBaixa" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Status" class="control-label"></label>
+                        @Html.DropDownList("Status",
+                                    new SelectList(Enum.GetValues(typeof(Status))),
+                                    "Selecione o Status",
+                                    new { @class = "form-control" })
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div id="detalhesTab" class="tab-pane fade in @ViewBag.classeDetalhesTab">
+            <div class="col-md-12">
+                <div class="row" style="margin-top:20px;">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.DropDownList("CaseId", new SelectList(@ViewBag.Cases, "Id", "Nome"), "Selecione um item", new { @class = "form-control form-paytrack-input" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type="button" value="Incluir Case" id="Salvar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span id="msg" style="color:red;">@ViewBag.msg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="refTable">
+                    @await Component.InvokeAsync("SistemaCases", new { SistemaId = Model.Id })
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+<script type="text/javascript">
+    $('#Salvar').click(function () {
+        var url = "/Sistemas/SalvarCase";
+        var caseId = $("#CaseId").val();
+        var sistemaId = @ViewBag.SistemaId;
+        $.post(url, { SistemaId: sistemaId, Caseid: caseId }, function (data) {
+              $("#msg").html("Case incluido com sucesso");
+        }).done(function(partialViewResult) {
+                $("#refTable").html(partialViewResult);
+            });
+    })
+</script>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@model SGE.Models.DespesaEvento
+
+@{
+    ViewData["Title"] = "Nova Despesa";
+}
+
+<h2>Create</h2>
+
+<h4>DespesaEvento</h4>
+<hr />
+ 
+<form asp-action="Create">
+    <input type="hidden" asp-for="EventoId" value="@ViewData["EventoId"]" />
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FuncionarioId" class="control-label"></label>
+                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="MontagemId" class="control-label"></label>
+                <select asp-for="MontagemId" class="form-control" asp-items="ViewBag.MontagemId"></select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ValorDiversos" class="control-label"></label>
+                <input asp-for="ValorDiversos" class="form-control"  pattern="[0-9]+([,\.][0-9]+)?" step="any" autocomplete="off"/>
+                <span asp-validation-for="ValorDiversos" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Almoco" /> @Html.DisplayNameFor(model => model.Almoco)
+                    </label>
+                </div>
+            </div>          
+        </div>
+        <div class="col-md-3">
+           
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Jantar" /> @Html.DisplayNameFor(model => model.Jantar)
+                    </label>
+                </div>
+            </div>            
+        </div>
+        <div class="col-md-3">            
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Lanche" /> @Html.DisplayNameFor(model => model.Lanche)
+                    </label>
+                </div>
+            </div>           
+        </div>
+        <div class="col-md-3">           
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Estadia" /> @Html.DisplayNameFor(model => model.Estadia)
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-4">            
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+</form>
+   
+
+<div>
+    <a asp-action="Index" class="btn btn-primary" asp-route-id="@ViewData["EventoId"]">Voltar para o Evento</a>
+</div>
+

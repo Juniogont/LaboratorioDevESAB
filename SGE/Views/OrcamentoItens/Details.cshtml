@@ -1,0 +1,96 @@
+﻿@model SGE.Models.OrcamentoItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrcamentoItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Orcamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Orcamento.NomeEvento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Case)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Case.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Equipamento.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sistema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sistema.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Instrumento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instrumento.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeInstrumento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeInstrumento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSistema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeSistema)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Diarias)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Diarias)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotalItem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotalItem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorSublocacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorSublocacao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

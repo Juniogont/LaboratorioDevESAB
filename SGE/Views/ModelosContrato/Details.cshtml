@@ -1,0 +1,108 @@
+﻿@model SGE.Models.ModeloContrato
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ModeloContrato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoInicial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoInicial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoInicialPosContratante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoInicialPosContratante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaPrimeira)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaPrimeira)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaSegunda)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaSegunda)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaTerceira)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaTerceira)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaQuarta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaQuarta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaQuinta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaQuinta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulasFinais)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulasFinais)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

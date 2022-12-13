@@ -1,0 +1,302 @@
+﻿@model SGE.Models.Orcamento
+
+@{
+    ViewData["Title"] = "Novo Orçamento";
+}
+
+<h2>Novo Orçamento</h2>
+<hr />
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MostrarValoresUnitarios" /> @Html.DisplayNameFor(model => model.MostrarValoresUnitarios)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MostrarValorTotal" /> @Html.DisplayNameFor(model => model.MostrarValorTotal)
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#dadosTab" role="tab" data-toggle="tab">Dados do Orçamento</a>
+        </li>
+        <li>
+            <a href="#equipamentosTab" role="tab" data-toggle="tab">Equipamentos</a>
+        </li>
+        <li>
+            <a href="#condicoesTab" role="tab" data-toggle="tab">Condições de Pagto - Obs.</a>
+        </li>
+        <li>
+            <a href="#obsTab" role="tab" data-toggle="tab">Observações Check-List</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="tab-content" style="padding-bottom: 20px;">
+            <div id="dadosTab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="ModeloOrcamentoId" class="control-label"></label>
+                            <select asp-for="ModeloOrcamentoId" class="form-control" asp-items="ViewBag.ModeloOrcamentoId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NomeEvento" class="control-label"></label>
+                            <input asp-for="NomeEvento" class="form-control" />
+                            <span asp-validation-for="NomeEvento" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="NumeroProposta" class="control-label"></label>
+                            <input asp-for="NumeroProposta" class="form-control" disabled />
+                            <span asp-validation-for="NumeroProposta" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LocalEventoId" class="control-label"></label>
+                            @Html.DropDownList("LocalEventoId", new SelectList(ViewBag.LocalEventoId, "Id", "Nome", null), "Selecione o Local do Evento", new { @class = "form-control" })
+                        </div>                     
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="dataInicio" class="control-label"></label>
+                            <input asp-for="dataInicio" class="form-control" />
+                            <span asp-validation-for="dataInicio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="dataProposta" class="control-label"></label>
+                            <input asp-for="dataProposta" class="form-control" />
+                            <span asp-validation-for="dataProposta" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="dataFim" class="control-label"></label>
+                            <input asp-for="dataFim" class="form-control" />
+                            <span asp-validation-for="dataFim" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="dataMontagem" class="control-label"></label>
+                            <input asp-for="dataMontagem" class="form-control" />
+                            <span asp-validation-for="dataMontagem" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label asp-for="TipoProposta" class="control-label"></label>
+                            @Html.DropDownList("TipoProposta",
+                                    new SelectList(Enum.GetValues(typeof(TipoProposta))), "Informe o tipo de Proposta",
+                                                                      new { @class = "form-control" })
+                            <span asp-validation-for="TipoProposta" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="EntidadeId" class="control-label"></label>
+                            @Html.DropDownList("EntidadeId", Enumerable.Empty<SelectListItem>(), "Clientes", new { @disabled = "disabled", @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-left">
+                        <a asp-action="CreateFast" asp-controller="Entidades" asp-route-acao="Create" asp-route-controle="Orcamentos" class="btn btn-primary">+</a>
+                        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+</button>*@
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="NomeSolicitante" class="control-label"></label>
+                            <input id="NomeSolicitante" asp-for="NomeSolicitante" class="form-control" />
+                            <span asp-validation-for="NomeSolicitante" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="EmpresaSolicitante" class="control-label"></label>
+                            <input name="EmpresaSolicitante" asp-for="EmpresaSolicitante" class="form-control" />
+                            <span asp-validation-for="EmpresaSolicitante" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="SituacaoOrcamento" class="control-label"></label>
+                            @Html.DropDownList("SituacaoOrcamento",
+                                      new SelectList(Enum.GetValues(typeof(SituacaoOrcamento))),
+                                                                        new { @class = "form-control" })
+                            <span asp-validation-for="SituacaoOrcamento" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Telefone" class="control-label"></label>
+                            <input name="Telefone" asp-for="Telefone" class="form-control" />
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input name="Email" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="EstadoId" class="control-label"></label>
+                            @Html.DropDownList("EstadoId", new SelectList(ViewBag.EstadoId, "Id", "Nome", null), "Selecione o Estado", new { @class = "form-control" })
+                            <span asp-validation-for="EstadoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="CidadeId" class="control-label"></label>
+                            @Html.DropDownList("CidadeId", Enumerable.Empty<SelectListItem>(), "Cidades", new { @disabled = "disabled", @class = "form-control" })
+                            <span asp-validation-for="CidadeId" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div id="equipamentosTab" class="tab-pane fade in">
+                <div class="col-md-12">
+                    <div class="row" style="margin-top:20px;">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <span id="msg" style="color:red;">Salve o Orçamento para incluir os Equipamentos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="condicoesTab" class="tab-pane fade in">
+                <div class="col-auto">
+                    <div class="form-group">
+                        <label asp-for="CondicoesPagamento" class="control-label"></label>
+                        <textarea asp-for="CondicoesPagamento" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="CondicoesPagamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Entrega" class="control-label"></label>
+                        <textarea asp-for="Entrega" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="Entrega" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ValidadeProposta" class="control-label"></label>
+                        <textarea asp-for="ValidadeProposta" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="ValidadeProposta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Observacoes" class="control-label"></label>
+                        <textarea asp-for="Observacoes" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="Observacoes" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="obsTab" class="tab-pane fade in">
+                <div class="form-group">
+                    <label asp-for="ObservacoesChecklist" class="control-label"></label>
+                    <textarea asp-for="ObservacoesChecklist" class="form-control" text-wrap="normal" type="text" rows="10"></textarea>
+                    <span asp-validation-for="ObservacoesChecklist" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        $('#EstadoId').change(function () {
+            $.ajax({
+                //url: '/Helper/CidadesByEstado',
+                url: '/Helper/CidadesByEstado',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    options += '<option value="0">Selecione a Cidade</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#CidadeId').prop('disabled', false).html(options);
+                }
+            });
+        });
+        $('#TipoProposta').change(function () {
+            $.ajax({
+                //url: '/Helper/CarregarClientes',
+                url: '/Helper/CarregarClientes',
+                type: 'POST',
+                data: { tipo: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    var cliente = false;
+                    options += '<option value="0">Selecione o Cliente</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                        cliente = true;
+                    });
+                    if (cliente) {
+                        $('#EntidadeId').prop('disabled', false).html(options);
+                    }
+                    else {
+                        $('#EntidadeId').prop('disabled', true).html(options);
+                    }
+                }
+            });
+        });
+        $('#EntidadeId').change(function () {
+            $.ajax({
+                //url: '/Helper/GetDadosCliente',
+                url: '/Helper/GetDadosCliente',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (result) {
+                    $('#EmpresaSolicitante').val(result.nomeFantasia);
+                    $('#Telefone').val(result.telefone1);
+                    $('#Email').val(result.email);
+                    $('#EstadoId').val(result.EstadoId);
+                }
+            });
+        });
+
+    });
+</script>

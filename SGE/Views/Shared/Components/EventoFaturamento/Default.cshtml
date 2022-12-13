@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MovimentoFinanceiro>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataVencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDocumento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.dataVencimento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Pago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                <input type="button" value="Excluir Item" id="Excluir" onclick='getProductDetails(@item.Id)' class="btn btn-primary" />
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function getProductDetails(ideq) {
+            var url = "/Eventos/ExcluirFaturamento";
+            var orcaId = @ViewBag.OrcamentoId;
+            if (confirm("Tem certeza que quer excluir o item?")) {
+                 $.post(url, { EquipId: ideq, OrcamentoId: orcaId}, function (data) {
+                $("#msg").html("Item excluido com sucesso");
+            }).done(function (partialViewResult) {
+                $("#refTableFaturamento").html(partialViewResult);
+            });
+         };
+    };
+</script>

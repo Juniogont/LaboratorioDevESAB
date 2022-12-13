@@ -1,0 +1,89 @@
+﻿@model IEnumerable<OrcamentoItem>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeInstrumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeSistema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diarias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotalItem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeInstrumento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeSistema)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diarias)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotalItem)
+                </td>
+                <td>
+                    <input type="button" value="Excluir Item" id="Excluir" onclick='getProductDetails(@item.Id)' class="btn btn-primary" />
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<div class="row">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-5">
+        <div style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size:large; text-align:right;">
+            <span >Valor Total: <b> @ViewData["valorOrcamento"] </b></span>
+        </div>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
+<script>
+    function getProductDetails(ideq) {
+            var url = "/Orcamentos/ExcluirItem";
+            var orcaId = @ViewBag.OrcamentoId;
+            if (confirm("Tem certeza que quer excluir o item?")) {
+                 $.post(url, { EquipId: ideq, OrcamentoId: orcaId}, function (data) {
+                $("#msg").html("Item excluido com sucesso");
+            }).done(function (partialViewResult) {
+                $("#refTable").html(partialViewResult);
+            });
+         };
+    };
+</script>

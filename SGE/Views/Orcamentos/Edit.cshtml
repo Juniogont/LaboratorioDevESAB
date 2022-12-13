@@ -1,0 +1,516 @@
+﻿@model SGE.Models.Orcamento
+
+@{
+    ViewData["Title"] = "Editar Orçamento";
+}
+
+<h2 class="text-danger">Editar Orçamento</h2>
+
+<hr />
+
+<form asp-action="Edit">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" /> | @Html.ActionLink("Gerar Evento", "GerarEvento", "Orcamentos", new { id = Model.Id }, new { @class = "btn btn-primary" }) |  @Html.ActionLink("Imprimir", "Details", "Orcamentos", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MostrarValoresUnitarios" /> @Html.DisplayNameFor(model => model.MostrarValoresUnitarios)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MostrarValorTotal" /> @Html.DisplayNameFor(model => model.MostrarValorTotal)
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span id="msg" style="color:red;">@ViewBag.msg</span>
+            </div>
+        </div>
+    </div>
+    <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#dadosTab" role="tab" data-toggle="tab">Dados do Orçamento</a>
+        </li>
+        <li>
+            <a href="#equipamentosTab" role="tab" data-toggle="tab">Equipamentos</a>
+        </li>
+        <li>
+            <a href="#condicoesTab" role="tab" data-toggle="tab">Condições de Pagto - Obs.</a>
+        </li>
+        <li>
+            <a href="#obsTab" role="tab" data-toggle="tab">Observações Check-List</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="tab-content" style="padding-bottom: 20px;">
+            <div id="dadosTab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="ModeloOrcamentoId" class="control-label"></label>
+                            <select asp-for="ModeloOrcamentoId" class="form-control" asp-items="ViewBag.ModeloOrcamentoId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NomeEvento" class="control-label"></label>
+                            <input asp-for="NomeEvento" class="form-control" />
+                            <span asp-validation-for="NomeEvento" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="NumeroProposta" class="control-label"></label>
+                            <input type="hidden" asp-for="NumeroProposta" />
+                            <input asp-for="NumeroProposta" class="form-control" disabled />
+                            <span asp-validation-for="NumeroProposta" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LocalEventoId" class="control-label"></label>
+                            <select asp-for="LocalEventoId" class="form-control" asp-items="ViewBag.LocalEventoId"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="dataInicio" class="control-label"></label>
+                            <input asp-for="dataInicio" class="form-control" />
+                            <span asp-validation-for="dataInicio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="dataProposta" class="control-label"></label>
+                            <input asp-for="dataProposta" class="form-control" />
+                            <span asp-validation-for="dataProposta" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="dataFim" class="control-label"></label>
+                            <input asp-for="dataFim" class="form-control" />
+                            <span asp-validation-for="dataFim" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="dataMontagem" class="control-label"></label>
+                            <input asp-for="dataMontagem" class="form-control" />
+                            <span asp-validation-for="dataMontagem" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label asp-for="TipoProposta" class="control-label"></label>
+                            @Html.DropDownList("TipoProposta",
+                                    new SelectList(Enum.GetValues(typeof(TipoProposta))), "Informe o tipo de Proposta",
+                                                                      new { @class = "form-control" })
+                            <span asp-validation-for="TipoProposta" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="EntidadeId" class="control-label"></label>
+                            <select asp-for="EntidadeId" class="form-control" asp-items="ViewBag.EntidadeId"></select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-left">
+                        <a asp-action="Create" asp-controller="Entidades" asp-route-acao="Edit" asp-route-controle="Orcamentos" asp-route-idorigem="@Model.Id" class="btn btn-primary">+</a>
+                        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+</button>*@
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="NomeSolicitante" class="control-label"></label>
+                            <input id="NomeSolicitante" asp-for="NomeSolicitante" class="form-control" />
+                            <span asp-validation-for="NomeSolicitante" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="EmpresaSolicitante" class="control-label"></label>
+                            <input name="EmpresaSolicitante" asp-for="EmpresaSolicitante" class="form-control" />
+                            <span asp-validation-for="EmpresaSolicitante" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label asp-for="SituacaoOrcamento" class="control-label"></label>
+                            @Html.DropDownList("SituacaoOrcamento",
+                                      new SelectList(Enum.GetValues(typeof(SituacaoOrcamento))),
+                                                                        new { @class = "form-control" })
+                            <span asp-validation-for="SituacaoOrcamento" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Telefone" class="control-label"></label>
+                            <input asp-for="Telefone" class="form-control" />
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="EstadoId" class="control-label"></label>
+                            <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
+                            <span asp-validation-for="EstadoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="CidadeId" class="control-label"></label>
+                            <select asp-for="CidadeId" class="form-control" asp-items="ViewBag.CidadeId"></select>
+                            <span asp-validation-for="CidadeId" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="equipamentosTab" class="tab-pane fade in">
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Sistemas</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Cases</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                            <label class="form-check-label" for="inlineRadio3">Equipamentos</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Tabela" id="inlineRadio4" value="1" checked>
+                            <label class="form-check-label">Tabela 1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Tabela" id="inlineRadio5" value="2">
+                            <label class="form-check-label">Tabela 2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Tabela" id="inlineRadio6" value="3">
+                            <label class="form-check-label">Tabela 3</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row" style="margin-top:20px;">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="diarias" class="control-label">Item</label>
+                                    @Html.DropDownList("EquipamentoId", Enumerable.Empty<SelectListItem>(), "Selecione um item", new { @disabled = "disabled", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="qtdeItem" class="control-label">Qtde</label>
+                                    <input class="form-control" type="number" id="qtdeItem" value="1" min="1">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="diarias" class="control-label">Diárias</label>
+                                    <input class="form-control" type="number" id="diarias" value="1" min="1">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">Instrumento</label>
+                                    @Html.DropDownList("InstrumentoId", new SelectList(@ViewBag.Instrumentos, "Id", "Nome"), "Selecione um item", new { @class = "form-control form-paytrack-input" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="diarias" class="control-label">Valor Unitário</label>
+                                    <input class="form-control" id="valorItem" pattern="[0-9]+([,\.][0-9]+)?" step="any" autocomplete="off">
+                                </div>
+                            </div>                            
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">                            
+                            <div class="col-md-10">
+                                <label for="descricaoItem" class="control-label">Descrição</label>
+                                <textarea id="descricaoItem" class="form-control" text-wrap="normal" type="text" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="button" value="Incluir Item" id="SalvarItem" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" id="refTable">
+                        @await Component.InvokeAsync("OrcamentoItens", new { OrcamentoId = @ViewBag.OrcamentoId })
+                    </div>
+                </div>
+            </div>
+            <div id="condicoesTab" class="tab-pane fade in">
+                <div class="col-auto">
+                    <div class="form-group">
+                        <label asp-for="CondicoesPagamento" class="control-label"></label>
+                        <textarea asp-for="CondicoesPagamento" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="CondicoesPagamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        +
+                        <label asp-for="Entrega" class="control-label"></label>
+                        <textarea asp-for="Entrega" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="Entrega" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ValidadeProposta" class="control-label"></label>
+                        <textarea asp-for="ValidadeProposta" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="ValidadeProposta" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Observacoes" class="control-label"></label>
+                        <textarea asp-for="Observacoes" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                        <span asp-validation-for="Observacoes" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="obsTab" class="tab-pane fade in">
+                <div class="form-group">
+                    <label asp-for="ObservacoesChecklist" class="control-label"></label>
+                    <textarea asp-for="ObservacoesChecklist" class="form-control" text-wrap="normal" type="text" rows="10"></textarea>
+                    <span asp-validation-for="ObservacoesChecklist" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var tipo = "";
+        var tabel = 1;
+        $('#EstadoId').change(function () {
+            $.ajax({
+                url: '/Helper/CidadesByEstado',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    options += '<option value="0">Selecione a Cidade</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#CidadeId').prop('disabled', false).html(options);
+                }
+            });
+        });
+        $('#TipoProposta').change(function () {
+            $.ajax({
+                url: '/Helper/CarregarClientes',
+                type: 'POST',
+                data: { tipo: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    var cliente = false;
+                    options += '<option value="0">Selecione o Cliente</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                        cliente = true;
+                    });
+                    if (cliente) {
+                        $('#EntidadeId').prop('disabled', false).html(options);
+                    }
+                    else {
+                        $('#EntidadeId').prop('disabled', true).html(options);
+                    }
+                }
+            });
+        });
+        $('#inlineRadio1').click(function () {
+            $.ajax({
+                url: '/Helper/CarregarSistemas',
+                type: 'POST',
+                datatype: 'json',
+                success: function (data) {
+                    tipo = "Sistema";
+                    var options = '';
+                    options += '<option value="0">Selecione o Sistema</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#EquipamentoId').prop('disabled', false).html(options);
+                }
+            });
+
+        });
+        $('#inlineRadio2').click(function () {
+            $.ajax({
+                url: '/Helper/CarregarCases',
+                type: 'POST',
+                datatype: 'json',
+                success: function (data) {
+                     tipo = "Case";
+                    var options = '';
+                    options += '<option value="0">Selecione o Case</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#EquipamentoId').prop('disabled', false).html(options);
+                }
+            });
+
+        });
+        $('#inlineRadio3').click(function () {
+            $.ajax({
+                url: '/Helper/CarregarEquipamentos',
+                type: 'POST',
+                datatype: 'json',
+                success: function (data) {
+                     tipo = "Equipamento";
+                    var options = '';
+                    options += '<option value="0">Selecione o Equipamento</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#EquipamentoId').prop('disabled', false).html(options);
+                }
+            });
+
+        });
+           $('#inlineRadio4').change(function () {
+            $.ajax({
+                url: '/Helper/TabelaValue',
+                type: 'POST',
+                data: { Id: $(this).val()},
+                datatype: 'int',
+                success: function (data) {
+                     tabel = 1;
+                }
+            });
+
+        });
+       $('#inlineRadio5').change(function () {
+            $.ajax({
+                url: '/Helper/TabelaValue',
+                type: 'POST',
+                data: { Id: $(this).val()},
+                datatype: 'int',
+                success: function (data) {
+                    tabel = 2;
+                }
+            });
+
+       });
+         $('#inlineRadio6').change(function () {
+            $.ajax({
+                url: '/Helper/TabelaValue',
+                type: 'POST',
+                data: { Id: $(this).val()},
+                datatype: 'int',
+                success: function (data) {
+                    tabel = 3;
+                }
+            });
+
+        });
+         $('#EquipamentoId').change(function () {
+            $.ajax({
+                url: '/Helper/GetInstrumentoComValor',
+                type: 'POST',
+                data: { EquipId: $(this).val() , Tipo: tipo, Tabela : tabel},
+                datatype: 'int',
+                success: function (data) {                     
+                    $("#InstrumentoId").val(data.intrumento);
+                    $("#valorItem").val(data.valorItem);
+                    $("#descricaoItem").val(data.descricaoItem);
+                }
+            });
+
+        });
+        $('#SalvarItem').click(function () {
+            var url = '/Orcamentos/SalvarItem';
+            var equipId = $("#EquipamentoId").val();
+            var instrId = $("#InstrumentoId").val();
+            var qtde = $("#qtdeItem").val();
+            var dias = $("#diarias").val();
+            var valItem = $("#valorItem").val();
+            var descItem = $("#descricaoItem").val();
+            var orcaId = @ViewBag.OrcamentoId;
+
+            $.post(url, { EquipId: equipId, OrcamentoId: orcaId, InstrumentoId: instrId, Qtde: qtde, Dias: dias, Tipo: tipo, Tabela: tabel, valItem: valItem, descricaoItem: descItem },
+                function (data) {
+                    $("#msg").html("Item incluido com sucesso");
+                }).done(function (partialViewResult) {
+                    $("#refTable").html(partialViewResult);
+            });
+
+        });
+
+         $('#EntidadeId').change(function () {
+            $.ajax({
+                //url: '/Helper/GetDadosCliente',
+                url: '/Helper/GetDadosCliente',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (result) {
+                    $('#EmpresaSolicitante').val(result.nomeFantasia);
+                    $('#Telefone').val(result.telefone1);
+                    $('#Email').val(result.email);
+                    $('#EstadoId').val(result.EstadoId);
+                }
+            });
+        });
+    });
+</script>

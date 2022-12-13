@@ -1,0 +1,54 @@
+﻿@model SGE.Models.Almoxarifado
+
+@{
+    ViewData["Title"] = "Almoxarifado";
+}
+
+
+<div>
+    <h4>Almoxarifado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantidadeEstoque)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuantidadeEstoque)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalEvento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalEvento.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PosicaoAlmoxarifado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PosicaoAlmoxarifado.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index"  class="btn btn-primary">Voltar</a>
+</div>

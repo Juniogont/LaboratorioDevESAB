@@ -1,0 +1,74 @@
+﻿@model SGE.Models.DespesaEvento
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3 class="text-danger">Tem certeza que quer excluir essa despesa do evento?</h3>
+<div>
+    <h4>DespesaEvento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcionario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Almoco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Almoco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jantar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jantar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lanche)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lanche)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estadia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estadia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorAlmoco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorAlmoco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorJantar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorJantar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorLanche)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorLanche)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorEstadia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorEstadia)
+        </dd>
+        
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" asp-route-eventoId="@ViewData["EventoId"]" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary" >Voltar</a>
+    </form>
+</div>

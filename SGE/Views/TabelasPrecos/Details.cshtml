@@ -1,0 +1,84 @@
+﻿@model SGE.Models.TabelaPreco
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TabelaPreco</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tabela)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tabela)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sistema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sistema.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Case)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Case.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Equipamento.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorCompra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorCompra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorLocacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorLocacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

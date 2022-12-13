@@ -1,0 +1,47 @@
+﻿@model SGE.Models.Contrato
+
+@{
+    ViewData["Title"] = "Gerar Contrato";
+}
+
+    <h2>Gerar Contrato</h2>
+
+<h4>Contrato</h4>
+<hr />
+<div class="row">
+    <form asp-action="Create">
+        <div class="col-md-4">
+            <input type="hidden" asp-for="EventoId" value="@ViewBag.EventoId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ModeloContratoId" class="control-label"></label>
+                <select asp-for="ModeloContratoId" class="form-control" asp-items="ViewBag.ModeloContratoId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventoId" class="control-label"></label>
+                <label class="form-control">@ViewBag.Evento</label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <label class="form-control">@ViewBag.Numero</label>
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntidadeId" class="control-label"></label>
+                <label class="form-control">@ViewBag.Cliente</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

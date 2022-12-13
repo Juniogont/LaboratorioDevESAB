@@ -1,0 +1,90 @@
+﻿@model SGE.Models.ViewModels.ViewModelEquipamento
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core.Common;
+@{
+    ViewData["Title"] = "Equipamentos";
+}
+<h2>
+    Equipamentos
+</h2>
+<form asp-action="Buscar" method="POST">
+    <div class="row">
+        <div class="tab-content" style="margin-top: 40px; background-color:aliceblue">
+            <div class="col-md-3">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">Novo Registro</a>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <input asp-for="buscaNome" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <input type="submit" value="Buscar" class="btn btn-primary text-left" />
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="tab-content" style="margin-top: 20px;">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Equipamento.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Equipamento.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Equipamento.QuantidadeEstoque)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Equipamento.Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Equipamentos != null)
+                    {
+                        @foreach (var item in Model.Equipamentos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QuantidadeEstoque)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Ver</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Excluir</a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)Model.Equipamentos, pagina => Url.Action("Index", new { pagina }),
+new PagedListRenderOptions
+{
+LiElementClasses = new string[] { "page-item" },
+PageClasses = new string[] { "page-link" }
+})
+</div>

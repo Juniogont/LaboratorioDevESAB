@@ -1,0 +1,82 @@
+﻿@model SGE.Models.ModeloContrato
+
+@{
+    ViewData["Title"] = "Edit";
+}
+    <h2 class="text-danger">Editar Modelo de Contrato (@ViewBag.Nome)</h2>
+
+<hr />
+<div class="row">
+    <div class="col-auto">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextoInicial" class="control-label"></label>
+                <textarea asp-for="TextoInicial" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="TextoInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextoInicialPosContratante" class="control-label"></label>
+                <textarea asp-for="TextoInicialPosContratante" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="TextoInicialPosContratante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulaPrimeira" class="control-label"></label>
+                <textarea asp-for="ClausulaPrimeira" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulaPrimeira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulaSegunda" class="control-label"></label>
+                <textarea asp-for="ClausulaSegunda" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulaSegunda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulaTerceira" class="control-label"></label>
+                <textarea asp-for="ClausulaTerceira" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulaTerceira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulaQuarta" class="control-label"></label>
+                <textarea asp-for="ClausulaQuarta" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulaQuarta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulaQuinta" class="control-label"></label>
+                <textarea asp-for="ClausulaQuinta" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulaQuinta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClausulasFinais" class="control-label"></label>
+                <textarea asp-for="ClausulasFinais" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="ClausulasFinais" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @Html.DropDownList("Status",
+                                  new SelectList(Enum.GetValues(typeof(Status))),
+                                  "Selecione o Status",
+                                  new { @class = "form-control" })
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

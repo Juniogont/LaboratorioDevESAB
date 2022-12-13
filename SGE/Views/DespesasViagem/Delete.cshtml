@@ -1,0 +1,87 @@
+﻿@model SGE.Models.DespesaViagem
+
+@{
+    ViewData["Title"] = "Excluir Despesa Viagem";
+}
+
+    <h2>Excluir Despesa Viagem</h2>
+
+<h3>Tem certeza que deseja excluir esse registro? Essa ação não poderá ser desfeita.</h3>
+<div>
+    <h4>DespesaViagem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Almoco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Almoco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jantar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jantar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lanche)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lanche)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estadia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estadia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoeficienteKM)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoeficienteKM)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoeficienteNF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoeficienteNF)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-primary" /> |
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    </form>
+</div>

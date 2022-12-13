@@ -1,0 +1,59 @@
+﻿@model SGE.Models.Entidade
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+    <h2>Nova Entidade</h2>
+
+<hr />
+<form asp-action="CreateFast" asp-route-acao="@ViewData["acao"]" asp-route-controle="@ViewData["controle"]" asp-route-idorigem="@ViewData["idorigem"]">
+    <div class="row">
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CPFCNPJ" class="control-label"></label>
+                <input asp-for="CPFCNPJ" class="form-control" />
+                <span asp-validation-for="CPFCNPJ" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-md-4">        
+
+            <div class="form-group">
+                <label asp-for="NomeFantasia" class="control-label"></label>
+                <input asp-for="NomeFantasia" class="form-control" />
+                <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label asp-for="TipoPessoa" class="control-label"></label>
+                @Html.DropDownList("TipoPessoa",
+                    new SelectList(Enum.GetValues(typeof(TipoPessoa))),
+                    "Selecione o Tipo de Pessoa",
+                    new { @class = "form-control" })
+                <span asp-validation-for="TipoPessoa" class="text-danger"></span>
+            </div>
+          
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

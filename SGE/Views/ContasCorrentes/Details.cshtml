@@ -1,0 +1,55 @@
+﻿@model SGE.Models.ContaCorrente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <h2>Detalhes</h2>
+
+<div>
+    <h4>Conta Corrente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.agencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.agencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banco.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>      
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Excluir</a> |
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>

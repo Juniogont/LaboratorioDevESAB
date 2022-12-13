@@ -1,0 +1,60 @@
+﻿@model SGE.Models.Contrato
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <h2>Contrato</h2>
+
+    <hr />
+    <div class="row">
+        <div class="col-auto text-danger">
+            Já existe um contrato com os dados informados.
+        </div>
+    </div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ModeloContrato)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ModeloContrato.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Evento)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Evento.NomeEvento)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Entidade)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Entidade.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataCadastro)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+        </dl>
+    </div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>

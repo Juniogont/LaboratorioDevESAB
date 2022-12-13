@@ -1,0 +1,80 @@
+﻿@model SGE.Models.ModeloContrato
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3>Tem certeza que deseja excluir esse registro? Essa ação não poderá ser desfeita.</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoInicial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoInicial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoInicialPosContratante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoInicialPosContratante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaPrimeira)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaPrimeira)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaSegunda)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaSegunda)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaTerceira)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaTerceira)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaQuarta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaQuarta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulaQuinta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulaQuinta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClausulasFinais)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClausulasFinais)
+        </dd>
+       
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    </form>
+</div>

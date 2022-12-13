@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SGE.Models.Almoxarifado">
+    <Position X="2" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAABBAAAAAAAAAIAAAAAAAAAAABAABAEAAAA=</HashCode>
+      <FileName>Models\Almoxarifado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Banco">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Banco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Cidade">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAA=</HashCode>
+      <FileName>Models\Cidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.ContaCorrente">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAgAAAAAAAAAAAAAAAAAgAAAEAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\ContaCorrente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Contrato">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAgAAAQAAABAAAAAAgAAAAAAAAAEAAABAAA=</HashCode>
+      <FileName>Models\Contrato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.DespesaViagem">
+    <Position X="2" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQABBAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DespesaViagem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Entidade">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iABAAAAGwCRAACIAAIGAEACAAAACAAAAAAACAAkBAAg=</HashCode>
+      <FileName>Models\Entidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Equipamento">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAARABAAAAEAAQAQAAAAAABBAAABACABEAAMA=</HashCode>
+      <FileName>Models\Equipamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Estado">
+    <Position X="6" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Estado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Evento">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhRAAEIOoSwCKJBAAAIAEkDEAAEAAIEAAgCABQEAAAg=</HashCode>
+      <FileName>Models\Evento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.FormaPagamento">
+    <Position X="6" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAACAAAAAAAAQAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\FormaPagamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Funcionario">
+    <Position X="7.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iARgAgIEgCRAQCIAAggEAACAACYAAAABAAAAAA0BwAg=</HashCode>
+      <FileName>Models\Funcionario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.LocalEvento">
+    <Position X="2" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iABAAAAEgCRBECIAAIAAEBCAAAAAAAAAAAAAAAkBAAg=</HashCode>
+      <FileName>Models\LocalEvento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.ModeloContrato">
+    <Position X="4" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAAAAAAAEAIAAAAAAAAAACAAAACAAACAUAABA=</HashCode>
+      <FileName>Models\ModeloContrato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.ModeloOrcamento">
+    <Position X="6" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAIgAAAAAAAAAQAAAAAIAAAAAAAQCUEAAAA=</HashCode>
+      <FileName>Models\ModeloOrcamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.MovimentoFinanceiro">
+    <Position X="11.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAAAgRQAAAAAhAEAAEEgAAAAlQAAAAAAAAAAE=</HashCode>
+      <FileName>Models\MovimentoFinanceiro.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Orcamento">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhRAAAIGoSgCKJAAAAAAFkDAAAEAAIEAAwCCBAAAAAg=</HashCode>
+      <FileName>Models\Orcamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.OrcamentoItem">
+    <Position X="9.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAIABIBAABEAAAZAAAEACAAAAAAABUQABAAAAA=</HashCode>
+      <FileName>Models\OrcamentoItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.PlanoContas">
+    <Position X="4" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\PlanoContas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.TabelaPreco">
+    <Position X="2" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAABAAAAAEAAARAAAAACAAAAAAAAQAABEAACA=</HashCode>
+      <FileName>Models\TabelaPreco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGE.Models.Usuario">
+    <Position X="5.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAgEAAAA=</HashCode>
+      <FileName>Models\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,93 @@
+﻿@model SGE.Models.ViewModels.ViewModelEvento
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+    <h2>Eventos</h2>
+
+<form asp-action="Buscar" method="POST">
+    <div class="row">
+        <div class="tab-content" style="margin-top: 40px; background-color:aliceblue">
+            @*<div class="col-md-3">
+                <p>
+                    <a asp-action="Create" asp-controller="Orcamentos" class="btn btn-primary">Novo Evento</a>
+                </p>
+            </div>*@
+            <div class="col-md-3">
+                <input asp-for="buscaNome" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <input type="submit" value="Buscar" class="btn btn-primary text-left" />
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.NumeroOS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.NomeEvento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.dataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.NomeSolicitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento.ValorTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Eventos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroOS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeEvento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeSolicitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado.Sigla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Ver/Editar</a> |
+                    <a asp-action="Gerar" asp-controller="Contratos" asp-route-id="@item.Id" class="btn btn-primary">Gerar Contrato</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Excluir</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

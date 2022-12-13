@@ -1,0 +1,176 @@
+﻿@model SGE.Models.ViewModels.ViewModelContratoImprimir
+
+@{
+    ViewData["Title"] = "Imprimir Contrato";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tools/1.2.7/jquery.tools.min.js"></script>
+<h2 class="text-danger">Imprimir Contrato</h2>
+
+<hr />
+<div>
+    <a class="btn btn-primary" onclick="imprimir()">Imprimir Contrato</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
+
+<div id="printTable">
+    <hr />
+    <div id="header" class="container_12">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: right">
+                    <b>@ViewBag.NumeroContrato </b>
+                    <br /><br />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divImprimir" style="font-family: Verdana; font-size: 12px;" class="container_12 clearfix">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: right; width:40%; padding-bottom:15px; ">
+                </td>
+                <td style="text-align: right; width:60%;  padding-bottom:15px;font-weight:bold">
+                    @ViewBag.Titulo
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:justify">
+                    @Html.Raw(@ViewBag.TextoInicial)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.Clausula1)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    @foreach (var instrumento in Model.Intrumentos)
+                    {
+                        <table class="table" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="font-weight:bold;text-align:left; ">
+                                        @Html.DisplayFor(modelItem => instrumento.Instrumento)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in instrumento.Itens)
+                                {
+                                    <tr>
+                                        <td style="text-align:left;">
+                                            @Html.DisplayFor(modelItem => item.Quantidade)
+                                        </td>
+                                        <td style="text-align:left;">
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.Clausula2)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.Clausula3)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.ValorTotal)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.Clausula4)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.Clausula5)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:justify;">
+                    @Html.Raw(@ViewBag.ClausulasFinais)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:right; padding-top: 30px; padding-bottom: 30px;">
+                    @Html.Raw(@ViewBag.LocalData)
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left; font-weight:bold; width: 50%; padding-bottom: 40px;">
+                    PELA CONTRATANTE:
+                </td>
+                <td style="text-align:left; font-weight:bold; width: 50%; padding-bottom: 40px;">
+                    PELA CONTRATADA:
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left; font-weight:bold; width: 50%;">
+                    _________________________________
+                </td>
+                <td style="text-align:left; font-weight:bold; width: 50%;">
+                    _________________________________
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+<script>
+    //function imprimir() {
+    //    var divToPrint = document.getElementById("printTable");
+    //    newWin = window.open("");
+    //    newWin.document.write(divToPrint.outerHTML);
+    //    newWin.print();
+    //    newWin.close();
+    //};
+
+    function imprimir() {
+        var divToPrint = document.getElementById("printTable");
+        var mywindow = window.open("");
+        var printar = true;
+        var is_chrome = Boolean(mywindow.chrome);
+        mywindow.document.write(divToPrint.outerHTML);
+        mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+
+        if (is_chrome) {
+            mywindow.onload = function () { // wait until all resources loaded
+                mywindow.focus(); // necessary for IE >= 10
+                mywindow.print();  // change window to mywindow
+                mywindow.close();// change window to mywindow
+                printar = false;
+            };
+            if (printar) {
+                mywindow.focus(); // necessary for IE >= 10
+                mywindow.print();  // change window to mywindow
+                mywindow.close();// change window to mywindow
+            }
+        }
+        else {
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();
+            mywindow.close();
+        }
+
+        return true;
+    }
+</script>
+

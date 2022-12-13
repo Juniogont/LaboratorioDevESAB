@@ -1,0 +1,237 @@
+﻿@model SGE.Models.Funcionario
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+<h2>Novo Funcionário</h2>
+
+<hr />
+<div class="row">
+    <form asp-action="CreateFast" asp-route-acao="@ViewData["acao"]" asp-route-controle="@ViewData["controle"]" asp-route-idorigem="@ViewData["idorigem"]">
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>            
+          
+            <div class="form-group">
+                <label asp-for="EstadoCivil" class="control-label"></label>
+                @Html.DropDownList("EstadoCivil",
+                                 new SelectList(Enum.GetValues(typeof(EstadoCivil))),
+                                                                   new { @class = "form-control" })
+                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Escolaridade" class="control-label"></label>
+                <input asp-for="Escolaridade" class="form-control" />
+                <span asp-validation-for="Escolaridade" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="CEP" class="control-label"></label>
+                <input asp-for="CEP" class="form-control" />
+                <span asp-validation-for="CEP" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <label asp-for="EstadoId" class="control-label"></label>
+                @Html.DropDownList("EstadoId", new SelectList(ViewBag.EstadoId, "Id", "Nome", null), "Selecione o Estado", new { @class = "form-control" })
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Telefone2" class="control-label"></label>
+                <input asp-for="Telefone2" class="form-control" />
+                <span asp-validation-for="Telefone2" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="DataAdmissao" class="control-label"></label>
+                <input asp-for="DataAdmissao" class="form-control" />
+                <span asp-validation-for="DataAdmissao" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="RG" class="control-label"></label>
+                <input asp-for="RG" class="form-control" />
+                <span asp-validation-for="RG" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="CNH" class="control-label"></label>
+                <input asp-for="CNH" class="form-control" />
+                <span asp-validation-for="CNH" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Tratamento" class="control-label"></label>
+                <input asp-for="Tratamento" class="form-control" />
+                <span asp-validation-for="Tratamento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EstadoNascId" class="control-label"></label>
+                @Html.DropDownList("EstadoNascId", new SelectList(ViewBag.EstadoNascId, "Id", "Nome", null), "Selecione o Estado", new { @class = "form-control" })
+            </div>
+
+            
+            <div class="form-group">
+                <label asp-for="DataNascimento" class="control-label"></label>
+                <input asp-for="DataNascimento" class="form-control" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>           
+           
+            <div class="form-group">
+                <label asp-for="Logradouro" class="control-label"></label>
+                <input asp-for="Logradouro" class="form-control" />
+                <span asp-validation-for="Logradouro" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Complemento" class="control-label"></label>
+                <input asp-for="Complemento" class="form-control" />
+                <span asp-validation-for="Complemento" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="CidadeId" class="control-label"></label>
+                @Html.DropDownList("CidadeId", Enumerable.Empty<SelectListItem>(), "Cidades", new { @disabled = "disabled", @class = "form-control" })
+            </div>
+            
+          
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+           
+           
+            <div class="form-group">
+                <label asp-for="DataDemissao" class="control-label"></label>
+                <input asp-for="DataDemissao" class="form-control" />
+                <span asp-validation-for="DataDemissao" class="text-danger"></span>
+            </div>
+           
+           
+            <div class="form-group">
+                <label asp-for="OrgaoEmissor" class="control-label"></label>
+                <input asp-for="OrgaoEmissor" class="form-control" />
+                <span asp-validation-for="OrgaoEmissor" class="text-danger"></span>
+            </div>
+        
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label asp-for="Cargo" class="control-label"></label>
+                @Html.DropDownList("Cargo",
+                                   new SelectList(Enum.GetValues(typeof(Cargo))),
+                                                                     new { @class = "form-control" })
+                <span asp-validation-for="Cargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CidadeNascId" class="control-label"></label>
+                @Html.DropDownList("CidadeNascId", Enumerable.Empty<SelectListItem>(), "Cidades", new { @disabled = "disabled", @class = "form-control" })
+            </div>
+                     
+            <div class="form-group">
+                <label asp-for="NomePai" class="control-label"></label>
+                <input asp-for="NomePai" class="form-control" />
+                <span asp-validation-for="NomePai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeMae" class="control-label"></label>
+                <input asp-for="NomeMae" class="form-control" />
+                <span asp-validation-for="NomeMae" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Bairro" class="control-label"></label>
+                <input asp-for="Bairro" class="form-control" />
+                <span asp-validation-for="Bairro" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Telefone1" class="control-label"></label>
+                <input asp-for="Telefone1" class="form-control" />
+                <span asp-validation-for="Telefone1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefone2" class="control-label"></label>
+                <input asp-for="Telefone2" class="form-control" />
+                <span asp-validation-for="Telefone2" class="text-danger"></span>
+            </div>
+          
+      
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <label asp-for="CTPS" class="control-label"></label>
+                <input asp-for="CTPS" class="form-control" />
+                <span asp-validation-for="CTPS" class="text-danger"></span>
+            </div>
+          
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="@ViewData["acao"]" asp-controller="@ViewData["controle"]" asp-route-id="@ViewData["idorigem"]" class="btn btn-primary">Voltar</a>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#EstadoNascId').change(function () {
+            $.ajax({
+                url: '/Helper/CidadesByEstado',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    options += '<option value="0">Selecione a Cidade</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#CidadeNascId').prop('disabled', false).html(options);
+                }
+            });
+        });
+         $('#EstadoId').change(function () {
+            $.ajax({
+                url: '/Helper/CidadesByEstado',
+                type: 'POST',
+                data: { id: $(this).val() },
+                datatype: 'json',
+                success: function (data) {
+                    var options = '';
+                    options += '<option value="0">Selecione a Cidade</option>';
+                    $.each(data, function () {
+                        options += '<option value="' + this.id + '">' + this.state + '</option>';
+                    });
+                    $('#CidadeId').prop('disabled', false).html(options);
+                }
+            });
+        });
+    });
+</script>

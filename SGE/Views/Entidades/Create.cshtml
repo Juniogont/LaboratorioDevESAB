@@ -1,0 +1,180 @@
+﻿@model SGE.Models.Entidade
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+    <h2>Nova Entidade</h2>
+
+<hr />
+<form asp-action="Create"  asp-route-acao="@ViewData["acao"]" asp-route-controle="@ViewData["controle"]" asp-route-idorigem="@ViewData["idorigem"]">
+    <div class="row">
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CPFCNPJ" class="control-label"></label>
+                <input asp-for="CPFCNPJ" class="form-control" />
+                <span asp-validation-for="CPFCNPJ" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Logradouro" class="control-label"></label>
+                <input asp-for="Logradouro" class="form-control" />
+                <span asp-validation-for="Logradouro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Bairro" class="control-label"></label>
+                <input asp-for="Bairro" class="form-control" />
+                <span asp-validation-for="Bairro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EstadoId" class="control-label"></label>
+                @Html.DropDownList("EstadoId", new SelectList(ViewBag.Estados, "Id", "Nome", null), "Selecione o Estado", new { @class = "form-control" })
+                <span asp-validation-for="EstadoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Cliente" /> @Html.DisplayNameFor(model => model.Cliente)
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">        
+
+            <div class="form-group">
+                <label asp-for="NomeFantasia" class="control-label"></label>
+                <input asp-for="NomeFantasia" class="form-control" />
+                <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RGInscricaoEstadual" class="control-label"></label>
+                <input asp-for="RGInscricaoEstadual" class="form-control" />
+                <span asp-validation-for="RGInscricaoEstadual" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+ 
+            <div class="form-group">
+                <label asp-for="Telefone1" class="control-label"></label>
+                <input asp-for="Telefone1" class="form-control" />
+                <span asp-validation-for="Telefone1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CidadeId" class="control-label"></label>
+                @Html.DropDownList("CidadeId", Enumerable.Empty<SelectListItem>(), "Cidades", new { @disabled = "disabled", @class = "form-control" })
+                <span asp-validation-for="CidadeId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WebSite" class="control-label"></label>
+                <input asp-for="WebSite" class="form-control" />
+                <span asp-validation-for="WebSite" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Fornecedor" /> @Html.DisplayNameFor(model => model.Fornecedor)
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label asp-for="TipoPessoa" class="control-label"></label>
+                @Html.DropDownList("TipoPessoa",
+                    new SelectList(Enum.GetValues(typeof(TipoPessoa))),
+                    "Selecione o Tipo de Pessoa",
+                    new { @class = "form-control" })
+                <span asp-validation-for="TipoPessoa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CEP" class="control-label"></label>
+                <input asp-for="CEP" class="form-control" />
+                <span asp-validation-for="CEP" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Complemento" class="control-label"></label>
+                <input asp-for="Complemento" class="form-control" />
+                <span asp-validation-for="Complemento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Telefone2" class="control-label"></label>
+                <input asp-for="Telefone2" class="form-control" />
+                <span asp-validation-for="Telefone2" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label"></label>
+                <input asp-for="Observacoes" class="form-control" />
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+    $('#EstadoId').change(function () {
+        $.ajax({
+            url: '/Helper/CidadesByEstado',
+            type: 'POST',
+            data: { id: $(this).val() },
+            datatype: 'json',
+            success: function (data) {
+                var options = '';
+                options += '<option value="0">Selecione a Cidade</option>';
+                $.each(data, function () {
+                    options += '<option value="' + this.id + '">' + this.state + '</option>';
+                });
+                $('#CidadeId').prop('disabled', false).html(options);
+            }
+        });
+    });
+});
+</script>

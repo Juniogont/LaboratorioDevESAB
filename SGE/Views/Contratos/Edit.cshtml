@@ -1,0 +1,52 @@
+﻿@model SGE.Models.Contrato
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <h2 class="text-danger">Editar Contrato (@ViewBag.Nome)</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ModeloContratoId" class="control-label"></label>
+                <select asp-for="ModeloContratoId" class="form-control" asp-items="ViewBag.ModeloContratoId"></select>
+                <span asp-validation-for="ModeloContratoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventoId" class="control-label"></label>
+                <select asp-for="EventoId" class="form-control" asp-items="ViewBag.EventoId"></select>
+                <span asp-validation-for="EventoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntidadeId" class="control-label"></label>
+                <select asp-for="EntidadeId" class="form-control" asp-items="ViewBag.EntidadeId"></select>
+                <span asp-validation-for="EntidadeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @Html.DropDownList("Status",
+                                 new SelectList(Enum.GetValues(typeof(Status))), "Informe o Status",
+                                                                   new { @class = "form-control" })
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

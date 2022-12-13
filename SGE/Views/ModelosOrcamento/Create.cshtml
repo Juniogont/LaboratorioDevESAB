@@ -1,0 +1,68 @@
+﻿@model SGE.Models.ModeloOrcamento
+
+@{
+    ViewData["Title"] = "Novo Modelo de Orcamento";
+}
+
+<h2>Novo Modelo de Orcamento</h2>
+
+<hr />
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-auto">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="CNPJ" class="control-label"></label>
+                <input asp-for="CNPJ" class="form-control" />
+                <span asp-validation-for="CNPJ" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="RazaoEmpresa" class="control-label"></label>
+                <input asp-for="RazaoEmpresa" class="form-control" />
+                <span asp-validation-for="RazaoEmpresa" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="TextoInicial" class="control-label"></label>
+                <textarea asp-for="TextoInicial" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="TextoInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextoFinal" class="control-label"></label>
+                <textarea asp-for="TextoFinal" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="TextoFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assinatura" class="control-label"></label>
+                <textarea asp-for="Assinatura" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="Assinatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rodapé" class="control-label"></label>
+                <textarea asp-for="Rodapé" class="form-control" text-wrap="normal" type="text" rows="5"></textarea>
+                <span asp-validation-for="Rodapé" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

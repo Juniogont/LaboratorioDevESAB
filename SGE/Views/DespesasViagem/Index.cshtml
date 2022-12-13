@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SGE.Models.DespesaViagem>
+
+@{
+    ViewData["Title"] = "Despesas de Viagem";
+}
+
+    <h2>Despesas de Viagem</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Almoco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jantar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lanche)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estadia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoeficienteKM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoeficienteNF)
+            </th>          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Almoco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jantar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lanche)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estadia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoeficienteKM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoeficienteNF)
+            </td>           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Ver</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model SGE.Models.DespesaViagem
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+    <h2>Nova Despesa Viagem</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Almoco" class="control-label"></label>
+                <input asp-for="Almoco" class="form-control" />
+                <span asp-validation-for="Almoco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jantar" class="control-label"></label>
+                <input asp-for="Jantar" class="form-control" />
+                <span asp-validation-for="Jantar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lanche" class="control-label"></label>
+                <input asp-for="Lanche" class="form-control" />
+                <span asp-validation-for="Lanche" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estadia" class="control-label"></label>
+                <input asp-for="Estadia" class="form-control" />
+                <span asp-validation-for="Estadia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoeficienteKM" class="control-label"></label>
+                <input asp-for="CoeficienteKM" class="form-control" />
+                <span asp-validation-for="CoeficienteKM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoeficienteNF" class="control-label"></label>
+                <input asp-for="CoeficienteNF" class="form-control" />
+                <span asp-validation-for="CoeficienteNF" class="text-danger"></span>
+            </div>           
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

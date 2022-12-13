@@ -1,0 +1,78 @@
+﻿@model SGE.Models.ModeloOrcamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ModeloOrcamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoInicial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoInicial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoFinal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoFinal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Assinatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Assinatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rodapé)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rodapé)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

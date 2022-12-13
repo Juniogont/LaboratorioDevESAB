@@ -1,0 +1,251 @@
+﻿@model SGE.Models.ViewModels.ViewModelEventoImprimir
+
+@{
+    ViewData["Title"] = "Imprimir Orçamento";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tools/1.2.7/jquery.tools.min.js"></script>
+<h2 class="text-danger">Imprimir CheckList</h2>
+
+<hr />
+<div>
+    <a class="btn btn-primary" onclick="imprimir()">Imprimir CheckList</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
+<div id="printTable">
+    <hr />
+    <div id="header" class="container_12">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: left">
+                    <img src="~/images/logoPoxxi.png" /><br /><br />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divImprimir" style="font-family: Verdana; font-size: 12px;" class="container_12 clearfix">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: left">
+                    @ViewBag.LocalEData
+                </td>
+                <td style="text-align: right">
+                    <b>Proposta: </b> @ViewBag.NumeroOS
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>Evento: </b>
+                    @Html.DisplayFor(model => model.Evento.NomeEvento)<br />
+                    <b>Cliente: </b>
+                    @Html.DisplayFor(model => model.Evento.Entidade.Nome)<br />
+                    <b>Contato: </b>
+                    @Html.DisplayFor(model => model.Evento.NomeSolicitante)
+                    <b>Telefone: </b>
+                    @Html.DisplayFor(model => model.Evento.Entidade.Telefone1)<br />
+                    <b>Local Instalação: </b>
+                    @Html.DisplayFor(model => model.Evento.LocalEvento.Nome)<br />
+                    <b>Endereço: </b>
+                    @Html.DisplayFor(model => model.Evento.LocalEvento.Logradouro)  ,@Html.DisplayFor(model => model.Evento.LocalEvento.Numero) <br />
+                    <b>Ponto Referência: </b>
+                    @Html.DisplayFor(model => model.Evento.LocalEvento.PontoReferencia)<br />
+                    <b>Período: </b>@ViewBag.DataInicio  <b>  Hr: </b> @ViewBag.HoraInicio <b>à  </b>@ViewBag.DataFim  <b>  Hr: </b> @ViewBag.HoraFim <br />
+                    <br /><br />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                    <table class="table" style="width:100%;">
+                        <thead>                           
+                            <tr>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Equipe
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Dia
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Montagem
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    RF1
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    RF2
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    RF3
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Estadia
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Diversos
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Total
+                                </th>
+                                <th style="font-weight:bold;border-bottom:1px solid;">
+                                    Assinatura
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.DespesasEvento)
+                            {
+                            <tr>
+                                <td style="text-align:center;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                                </td>
+                                <td style="text-align:center;font-size: 11px;border-bottom:1px solid;">
+                                </td>
+                                <td style="text-align:left;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.Montagem.Nome)
+                                </td>
+                                <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.ValorAlmoco)
+                                </td>
+                                <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.ValorJantar)
+                                </td>
+                                <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.ValorLanche)
+                                </td>
+                                <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.ValorDiversos)
+                                </td>
+                                <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                                </td>
+                                <td style="text-align:center;font-size: 11px;border-bottom:1px solid;">
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" style="text-align:right;"><b>Total: </b> @ViewBag.TotalDespesas</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                    <span style="font-family: Verdana; font-size: 14px;font-weight:bold; text-decoration: underline;">Relação dos Equipamentos:</span> <br />
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @foreach (var instrumento in Model.Intrumentos)
+                    {
+                        <table class="table" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="font-weight:bold;text-align:left; ">
+                                        @Html.DisplayFor(modelItem => instrumento.Instrumento)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="font-weight:bold;">
+                                        Dias
+                                    </th>
+                                    <th style="font-weight:bold;">
+                                        Qtde.
+                                    </th>
+                                    <th style="font-weight:bold;">
+                                        Descrição dos Equipamentos
+                                    </th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in instrumento.Itens)
+                                {
+                                    <tr>
+                                        <td style="text-align:center;font-size: 11px;">
+                                            @Html.DisplayFor(modelItem => item.Diarias)
+                                        </td>
+                                        <td style="text-align:center;font-size: 11px;">
+                                            @Html.DisplayFor(modelItem => item.Quantidade)
+                                        </td>
+                                        <td style="text-align:left;font-size: 11px;">
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align:right;"><b>Subtotal: </b> @Html.DisplayFor(modelItem => instrumento.Subtotal)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;font-weight:bold;">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                   
+                 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;white-space: pre-line;">
+                  
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;font-weight:bold;white-space: pre-line;">
+                    <hr />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+<script>
+    //function imprimir() {
+    //    var divToPrint = document.getElementById("printTable");
+    //    newWin = window.open("");
+    //    newWin.document.write(divToPrint.outerHTML);
+    //    newWin.print();
+    //    newWin.close();
+    //};
+
+    function imprimir() {
+        var divToPrint = document.getElementById("printTable");
+        var mywindow = window.open("");
+
+        var is_chrome = Boolean(mywindow.chrome);
+        mywindow.document.write(divToPrint.outerHTML);
+        mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+
+        if (is_chrome) {
+            mywindow.onload = function () { // wait until all resources loaded
+                mywindow.focus(); // necessary for IE >= 10
+                mywindow.print();  // change window to mywindow
+                mywindow.close();// change window to mywindow
+            };
+        }
+        else {
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();
+            mywindow.close();
+        }
+
+        return true;
+    }
+</script>

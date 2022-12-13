@@ -1,0 +1,61 @@
+﻿@model SGE.Models.DespesaViagem
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+    <h2>Detalhes</h2>
+
+<div>
+    <h4>DespesaViagem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Almoco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Almoco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jantar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jantar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lanche)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lanche)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estadia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estadia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoeficienteKM)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoeficienteKM)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoeficienteNF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoeficienteNF)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>

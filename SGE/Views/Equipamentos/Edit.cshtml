@@ -1,0 +1,83 @@
+﻿@model SGE.Models.Equipamento
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2 class="text-danger">Editar Equipamento (@ViewBag.Nome)</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <textarea asp-for="Descricao" class="form-control" text-wrap="normal" type="text"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Imagem" class="control-label"></label>
+                <input asp-for="Imagem" class="form-control" />
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroSerie" class="control-label"></label>
+                <input asp-for="NumeroSerie" class="form-control" />
+                <span asp-validation-for="NumeroSerie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantidadeEstoque" class="control-label"></label>
+                <input asp-for="QuantidadeEstoque" class="form-control" />
+                <span asp-validation-for="QuantidadeEstoque" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorSistema" class="control-label"></label>
+                <input asp-for="ValorSistema" class="form-control" />
+                <span asp-validation-for="ValorSistema" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorLocacao" class="control-label"></label>
+                <input asp-for="ValorLocacao" class="form-control" />
+                <span asp-validation-for="ValorLocacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataAquisição" class="control-label"></label>
+                <input asp-for="DataAquisição" class="form-control" />
+                <span asp-validation-for="DataAquisição" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataBaixa" class="control-label"></label>
+                <input asp-for="DataBaixa" class="form-control" />
+                <span asp-validation-for="DataBaixa" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @Html.DropDownList("Status",
+                  new SelectList(Enum.GetValues(typeof(Status))),
+                  "Selecione o Status",
+                  new { @class = "form-control" })
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+

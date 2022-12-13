@@ -1,0 +1,109 @@
+﻿@model SGE.Models.Case
+
+@{
+    ViewData["Title"] = "Editar";
+}
+<h2 class="text-danger">Editar Case (@ViewBag.Nome)</h2>
+
+<hr />
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="@ViewBag.classeDadosTab">
+        <a href="#dadosTab" role="tab" data-toggle="tab">Dados do Case</a>
+    </li>
+    <li class="@ViewBag.classeDetalhesTab">
+        <a href="#detalhesTab" role="tab" data-toggle="tab">Equipamentos do Case</a>
+    </li>
+</ul>
+<div class="row">
+    <div class="tab-content">
+        <div id="dadosTab" class="tab-pane fade in @ViewBag.classeDadosTab">
+            <form asp-action="Edit">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Codigo" class="control-label"></label>
+                        <input asp-for="Codigo" class="form-control" />
+                        <span asp-validation-for="Codigo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SistemaId" class="control-label"></label>
+                        <select asp-for="SistemaId" class="form-control" asp-items="ViewBag.SistemaId"></select>
+                        <span asp-validation-for="SistemaId" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Descricao" class="control-label"></label>
+                        <textarea asp-for="Descricao" class="form-control" text-wrap="normal" type="text"></textarea>
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Status" class="control-label"></label>
+                        @Html.DropDownList("Status",
+                                    new SelectList(Enum.GetValues(typeof(Status))),
+                                    "Selecione o Status",
+                                    new { @class = "form-control" })
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="detalhesTab" class="tab-pane fade in @ViewBag.classeDetalhesTab">
+            <div class="col-md-12">
+                <div class="row" style="margin-top:20px;">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.DropDownList("EquipamentoId", new SelectList(@ViewBag.Equipamentos, "Id", "Nome"), "Selecione um item", new { @class = "form-control form-paytrack-input" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type="button" value="Incluir Equipamento" id="Salvar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span id="msg" style="color:red;">@ViewBag.msg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="refTable">
+                    @await Component.InvokeAsync("CaseEquipamentos", new { CaseId = @ViewBag.CaseID })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+</div>
+<script type="text/javascript">
+    $("#msg").html("");
+
+    $('#Salvar').click(function () {
+        var url = "/Cases/SalvarEquipamento";
+        var equipId = $("#EquipamentoId").val();
+        var caseid = @ViewBag.CaseID;
+        $.post(url, { EquipId: equipId, Caseid: caseid }, function (data) {
+            $("#msg").html("Equipamento incluido com sucesso");
+        }).done(function(partialViewResult) {
+                $("#refTable").html(partialViewResult);
+            });
+    })
+</script>
+

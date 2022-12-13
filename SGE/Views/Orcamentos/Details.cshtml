@@ -1,0 +1,188 @@
+﻿@model SGE.Models.ViewModels.ViewModelOrcamentoImprimir
+
+@{
+    ViewData["Title"] = "Imprimir Orçamento";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tools/1.2.7/jquery.tools.min.js"></script>
+<h2 class="text-danger">Imprimir Orçamento</h2>
+
+<hr />
+<div>
+    <a class="btn btn-primary" onclick="imprimir()">Imprimir Orçamento</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
+<div id="printTable">
+    <hr />
+    <div id="header" class="container_12">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: left">
+                    <img src="~/images/@Html.DisplayFor(model => model.Orcamento.ModeloOrcamento.LogomarcaPath)" /><br /><br />
+                </td>
+            </tr>          
+        </table>
+    </div>
+    <div id="divImprimir" style="font-family: Verdana; font-size: 12px;" class="container_12 clearfix">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align: left">
+                    @ViewBag.LocalEData
+                </td>
+                <td style="text-align: right">
+                    <b>Proposta: </b> @ViewBag.Proposta
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>
+                        À <br />
+                        @Html.DisplayFor(model => model.Orcamento.EmpresaSolicitante)
+                    </b><br />
+                    <b>A/C: </b>
+                    @Html.DisplayFor(model => model.Orcamento.NomeSolicitante)<br />
+                    <b>E-mail: </b>
+                    @Html.DisplayFor(model => model.Orcamento.Email)<br />
+                    <b>Evento: </b>
+                    @Html.DisplayFor(model => model.Orcamento.NomeEvento)<br />
+                    <b>Período: </b>@ViewBag.DataInicio  <b>  Hr: </b> @ViewBag.HoraInicio <b>à  </b>@ViewBag.DataFim  <b>  Hr: </b> @ViewBag.HoraFim <br />
+                    <b>Local: </b>
+                    @Html.DisplayFor(model => model.Orcamento.LocalEvento.Nome)<br /><br />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span style="font-family: Verdana; font-size: 14px;font-weight:bold; text-decoration: underline;">Ref: Locação de Equipamentos</span> <br /><br />
+                    @Html.DisplayFor(model => model.Orcamento.ModeloOrcamento.TextoInicial)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @foreach (var instrumento in Model.Intrumentos)
+                    {
+                        <table class="table" style="width:100%;">
+                            <thead >
+                                <tr>
+                                    <th colspan="5" style="font-weight:bold;text-align:left; ">
+                                        @Html.DisplayFor(modelItem => instrumento.Instrumento)
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="font-weight:bold;border-bottom:1px solid;">
+                                        Dias
+                                    </th >
+                                    <th style="font-weight:bold;border-bottom:1px solid;">
+                                        Qtde.
+                                    </th>
+                                    <th style="font-weight:bold;border-bottom:1px solid;">
+                                        Descrição dos Equipamentos
+                                    </th>
+                                    <th style="font-weight:bold;border-bottom:1px solid;">
+                                        Valor Unit.
+                                    </th>
+                                    <th style="font-weight:bold;border-bottom:1px solid;">
+                                        Valor Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in instrumento.Itens)
+                                {
+                                    <tr>
+                                        <td style="text-align:center;font-size: 11px;border-bottom:1px solid;">
+                                            @Html.DisplayFor(modelItem => item.Diarias)
+                                        </td>
+                                        <td style="text-align:center;font-size: 11px;border-bottom:1px solid;">
+                                            @Html.DisplayFor(modelItem => item.Quantidade)
+                                        </td>
+                                        <td style="text-align:left;font-size: 11px;border-bottom:1px solid;">
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>
+                                        <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                            @Html.DisplayFor(modelItem => item.Valor)
+                                        </td>
+                                        <td style="text-align:right;font-size: 11px;border-bottom:1px solid;">
+                                            @Html.DisplayFor(modelItem => item.ValorTotalItem)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align:right;"><b>Subtotal: </b> @Html.DisplayFor(modelItem => instrumento.Subtotal)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;font-weight:bold;">
+                    @ViewBag.ValorTotal
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span style="font-family: Verdana; font-size: 14px;font-weight:bold; text-decoration: underline;">Condições Comerciais</span> <br /><br />
+                        <b>Pagamento: </b>
+                    @Html.DisplayFor(model => model.Orcamento.CondicoesPagamento)<br /><br />
+                    <b>Validade: </b>
+                    @Html.DisplayFor(model => model.Orcamento.ValidadeProposta)<br />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;white-space: pre-line;">
+                    @Html.DisplayFor(model => model.Orcamento.ModeloOrcamento.TextoFinal)<br /><br />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:left;font-weight:bold;white-space: pre-line;">
+                    @ViewBag.Assinatura
+                    <hr />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+<script>
+    //function imprimir() {
+    //    var divToPrint = document.getElementById("printTable");
+    //    newWin = window.open("");
+    //    newWin.document.write(divToPrint.outerHTML);
+    //    newWin.print();
+    //    newWin.close();
+    //};
+
+    function imprimir() {
+        var divToPrint = document.getElementById("printTable");
+        var mywindow = window.open("");
+
+        var is_chrome = Boolean(mywindow.chrome);
+        mywindow.document.write(divToPrint.outerHTML);
+        mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+
+        if (is_chrome) {
+            mywindow.onload = function () { // wait until all resources loaded
+                mywindow.focus(); // necessary for IE >= 10
+                mywindow.print();  // change window to mywindow
+                mywindow.close();// change window to mywindow
+            };
+        }
+        else {
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();
+            mywindow.close();
+        }
+
+        return true;
+    }
+</script>

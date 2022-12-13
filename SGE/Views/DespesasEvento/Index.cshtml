@@ -1,0 +1,153 @@
+﻿@model SGE.Models.ViewModels.ViewModelDepesasEvento
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Programação do Evento</h2>
+<hr />
+<form asp-action="SalvarNovo" asp-route-eventoId="@ViewData["EventoId"]">
+    <div class="row">
+        <div class="col-md-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DespesaEvento.FuncionarioId" class="control-label"></label>
+                <select asp-for="DespesaEvento.FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+            </div>
+        </div>
+        <div class="col-md-1 text-left">
+            <a asp-action="CreateFast" asp-controller="Funcionarios" asp-route-acao="Index" asp-route-controle="DespesasEvento" asp-route-idorigem="@ViewData["EventoId"]" class="btn btn-primary">+</a>
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+</button>*@
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="DespesaEvento.MontagemId" class="control-label"></label>
+                <select asp-for="DespesaEvento.MontagemId" class="form-control" asp-items="ViewBag.MontagemId"></select>
+            </div>
+        </div>
+        <div class="col-md-1 text-left">
+            <a asp-action="CreateFast" asp-controller="Montagens" asp-route-acao="Index" asp-route-controle="DespesasEvento" asp-route-idorigem="@ViewData["EventoId"]" class="btn btn-primary">+</a>
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+</button>*@
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="DespesaEvento.ValorDiversos" class="control-label"></label>
+                <input asp-for="DespesaEvento.ValorDiversos" class="form-control" />
+                <span asp-validation-for="DespesaEvento.ValorDiversos" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="DespesaEvento.Almoco" /> @Html.DisplayNameFor(model => model.DespesaEvento.Almoco)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="DespesaEvento.Jantar" /> @Html.DisplayNameFor(model => model.DespesaEvento.Jantar)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="DespesaEvento.Lanche" /> @Html.DisplayNameFor(model => model.DespesaEvento.Lanche)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="DespesaEvento.Estadia" /> @Html.DisplayNameFor(model => model.DespesaEvento.Estadia)
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+</form>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.Funcionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.Montagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorAlmoco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorJantar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorLanche)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorEstadia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorDiversos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DespesaEvento.ValorTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DespesasEvento)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Montagem.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Almoco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jantar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lanche)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estadia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorDiversos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-eventoId="@ViewData["EventoId"]" class="btn btn-primary">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

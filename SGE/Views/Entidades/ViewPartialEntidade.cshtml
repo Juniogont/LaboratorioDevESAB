@@ -1,0 +1,103 @@
+﻿@*@model SGE.Models.Entidade*@
+
+<h4>Entidade</h4>
+<hr />
+
+    <form asp-action="ModalEntidade">
+        <div class="row m-auto">
+            <div class="col-m-1">
+            </div>
+            <div class="col-auto">
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <input id="Nome" class="form-control" />
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="form-group">
+                    <label class="control-label">Nome Fantasia</label>
+                    <input id="NomeFantasia" class="form-control" />
+                </div>
+            </div>
+            <div class="col-m-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">              
+                <div class="form-group">
+                    <label id="CPFCNPJ" class="control-label"></label>
+                    <input id="CPFCNPJ" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">CEP</label>
+                    <input id="CEP" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Logradouro</label>
+                    <input id="Logradouro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Numero</label>
+                    <input id="Numero" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label id="" class="control-label">Complemento</label>
+                    <input id="Complemento" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label id="Bairro" class="control-label"></label>
+                    <input id="Bairro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label id="EstadoId" class="control-label"></label>
+                    @Html.DropDownList("EstadoId", new SelectList(ViewBag.EstadoId, "Id", "Nome", null), "Selecione o Estado", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label id="CidadeId" class="control-label"></label>
+                    @Html.DropDownList("CidadeId", Enumerable.Empty<SelectListItem>(), "Cidades", new { @disabled = "disabled", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label id="" class="control-label">Telefone</label>
+                    <input id="Telefone1" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label id="" class="control-label">Celular</label>
+                    <input id="Celular" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label id="Email" class="control-label"></label>
+                    <input id="Email" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+
+            </div
+            
+        </div>
+    </form>
+
+
+
+
+<script>
+    $(document).ready(function () {
+    $('#EstadoId').change(function () {
+        $.ajax({
+            url: '/Helper/CidadesByEstado',
+            type: 'POST',
+            data: { id: $(this).val() },
+            datatype: 'json',
+            success: function (data) {
+                var options = '';
+                options += '<option value="0">Selecione a Cidade</option>';
+                $.each(data, function () {
+                    options += '<option value="' + this.id + '">' + this.state + '</option>';
+                });
+                $('#CidadeId').prop('disabled', false).html(options);
+            }
+        });
+    });
+});
+</script>

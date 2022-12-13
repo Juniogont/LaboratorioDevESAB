@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SGE.Models.MovimentoFinanceiro>
+
+@{
+    ViewData["Title"] = "Entradas";
+}
+
+<h2>Entradas</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo Registro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataVencimento)
+            </th>
+            <th>
+                Recebido
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroDocumento)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataVencimento)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Ver</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
